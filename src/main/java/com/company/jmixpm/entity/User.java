@@ -25,30 +25,39 @@ public class User implements JmixUserDetails, HasTimeZone {
 
     @Column(name = "USERNAME", nullable = false)
     protected String username;
+
     @Secret
     @SystemLevel
     @Column(name = "PASSWORD")
     protected String password;
+
     @Column(name = "FIRST_NAME")
     protected String firstName;
+
     @Column(name = "LAST_NAME")
     protected String lastName;
+
     @Email
     @Column(name = "EMAIL")
     protected String email;
+
     @Column(name = "ACTIVE")
     protected Boolean active = true;
+
     @Column(name = "TIME_ZONE_ID")
     protected String timeZoneId;
-    @Transient
-    protected Collection<? extends GrantedAuthority> authorities;
+
     @Id
     @Column(name = "ID", nullable = false)
     @JmixGeneratedValue
     private UUID id;
+
     @Version
     @Column(name = "VERSION", nullable = false)
     private Integer version;
+
+    @Transient
+    protected Collection<? extends GrantedAuthority> authorities;
 
     public UUID getId() {
         return id;
