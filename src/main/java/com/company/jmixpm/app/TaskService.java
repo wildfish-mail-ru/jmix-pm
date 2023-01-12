@@ -13,10 +13,10 @@ public class TaskService {
 
     // найдём самого незанятого пользователя, у кого меньше всего занятых часов, а не количество задач
     public User findLeastBusyUser() {
-        User user = dataManager.loadValues("select u, count(t.id) " +
+        User user = dataManager.loadValues("select u, sum(t.estimatedEfforts) " +
                 "from User u left outer join Task_ t "+
                 "on u = t.assignee "+
-                "group by u order by count(t.id)")
+                "group by u order by sum(t.estimatedEfforts) desc")
                 .properties("user", "tasks")
                 .list().stream()
                 .map(e -> e.<User>getValue("user"))

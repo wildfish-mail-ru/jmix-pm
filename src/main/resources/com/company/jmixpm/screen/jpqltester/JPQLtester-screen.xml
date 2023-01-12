@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://jpqlTesterScreen.caption">
+    <layout expand="codeField" spacing="true">
+        <sourceCodeEditor id="codeField" width="100%"/>
+        <comboBox id="entityComboBox" caption="Entity"/>
+        <button id="testBtn" caption="Test"/>
+    </layout>
+</window>
