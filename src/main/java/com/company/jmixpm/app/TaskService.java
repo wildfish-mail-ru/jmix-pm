@@ -16,14 +16,12 @@ public class TaskService {
         User user = dataManager.loadValues("select u, sum(t.estimatedEfforts) " +
                 "from User u left outer join Task_ t "+
                 "on u = t.assignee "+
-                "group by u order by sum(t.estimatedEfforts) desc")
-                .properties("user", "tasks")
+                "group by u order by sum(t.estimatedEfforts)")
+                .properties("user")
                 .list().stream()
                 .map(e -> e.<User>getValue("user"))
                 .findFirst()
                 .orElseThrow(IllegalStateException::new);
-
-
 
 /*
         List list = dataManager.loadValues("select u, count(t.id) "+

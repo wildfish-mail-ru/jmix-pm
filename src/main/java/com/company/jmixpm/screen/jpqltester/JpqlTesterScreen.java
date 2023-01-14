@@ -64,6 +64,11 @@ public class JpqlTesterScreen extends Screen {
             } else {
                 list = dataManager.loadValues(codeField.getValue()).list();
             }
+
+//            for (<?> l: list):{
+//                System.out.println(l);
+//            }
+
             System.out.println("Query results: " + list);
 
 //            dialogs.createMessageDialog()
