@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,10 +26,22 @@ public class ProjectStatsService {
             stat.setTasksCount(project.getTasks().size());
             Integer estimatedEfforts = project.getTasks().stream().map(Task::getEstimatedEfforts).reduce(0, Integer::sum);
             stat.setPlanedEfforts(estimatedEfforts);
+            stat.setActualEfforts(getActualEfforts(project.getId()));
 
             return stat;
         }).collect(Collectors.toList());
 
         return projectStats;
+    }
+
+    public Integer getActualEfforts(UUID projectId) {
+//        return dataManager.loadValue("select sum(te.timeSpend) from TimeEntry te where te.Task.pojectid = :projectId",
+//                Integer.class)
+//                .parameter("projectId",projectId)
+//                .one();
+//    }
+        return dataManager.loadValue("select sum(te.timeSpend) from TimeEntry te where te.task.project.id = :projectId", Integer.class)
+                .parameter("projectId", projectId)
+                .one();
     }
 }

@@ -29,7 +29,7 @@
                     width="100%"
                     dataContainer="projectStatsDc">
             <columns>
-                <column id="ProjectId" visible="false"/>
+                <column id="projectId" visible="false"/>
                 <column id="projectName"/>
                 <column id="tasksCount"/>
                 <column id="planedEfforts"/>

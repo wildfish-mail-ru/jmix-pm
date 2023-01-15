@@ -9,7 +9,7 @@ import java.util.UUID;
 public class ProjectStat {
 
     @JmixId
-    private UUID ProjectId;
+    private UUID projectId;
 
     private String projectName;
 
@@ -50,10 +50,10 @@ public class ProjectStat {
     }
 
     public UUID getProjectId() {
-        return ProjectId;
+        return projectId;
     }
 
     public void setProjectId(UUID projectId) {
-        this.ProjectId = projectId;
+        this.projectId = projectId;
     }
 }

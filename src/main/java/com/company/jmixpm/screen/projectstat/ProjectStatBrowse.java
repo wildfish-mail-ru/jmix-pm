@@ -22,4 +22,5 @@ public class ProjectStatBrowse extends StandardLookup<ProjectStat> {
 
         return projectStatsService.fetchProjectStatistics();
     }
+
 }
