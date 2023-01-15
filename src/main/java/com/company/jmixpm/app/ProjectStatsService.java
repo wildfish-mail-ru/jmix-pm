@@ -27,21 +27,20 @@ public class ProjectStatsService {
             Integer estimatedEfforts = project.getTasks().stream().map(Task::getEstimatedEfforts).reduce(0, Integer::sum);
             stat.setPlanedEfforts(estimatedEfforts);
             stat.setActualEfforts(getActualEfforts(project.getId()));
-
             return stat;
         }).collect(Collectors.toList());
 
         return projectStats;
     }
 
-    public Integer getActualEfforts(UUID projectId) {
-//        return dataManager.loadValue("select sum(te.timeSpend) from TimeEntry te where te.Task.pojectid = :projectId",
+    public Integer getActualEfforts(UUID projectId){
+//        return dataManager.loadValue("select sum(te.timeSpend) from TimeEntry te where te.task.project.id = :projectId",
 //                Integer.class)
 //                .parameter("projectId",projectId)
-//                .one();
-//    }
+//                .one();причём этот вариант выбрасывает эксепшинсязанный с нулом
         return dataManager.loadValue("select sum(te.timeSpend) from TimeEntry te where te.task.project.id = :projectId", Integer.class)
                 .parameter("projectId", projectId)
                 .one();
     }
+
 }
