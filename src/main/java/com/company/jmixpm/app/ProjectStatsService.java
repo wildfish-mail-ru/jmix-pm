@@ -34,13 +34,18 @@ public class ProjectStatsService {
     }
 
     public Integer getActualEfforts(UUID projectId){
-//        return dataManager.loadValue("select sum(te.timeSpend) from TimeEntry te where te.task.project.id = :projectId",
-//                Integer.class)
-//                .parameter("projectId",projectId)
-//                .one();причём этот вариант выбрасывает эксепшинсязанный с нулом
-        return dataManager.loadValue("select sum(te.timeSpend) from TimeEntry te where te.task.project.id = :projectId", Integer.class)
-                .parameter("projectId", projectId)
+        return dataManager.loadValue("select sum(te.timeSpend) from TimeEntry te where te.task.project.id = :projectId",
+                Integer.class)
+
+                .parameter("projectId",projectId)
                 .one();
+
+//                причём этот вариант выбрасывает эксепшин связанный с нулом из-за того, что Integer.class стоит на другой строке
+
+//        return dataManager.loadValue("select sum(te.timeSpend) from TimeEntry te where te.task.project.id = :projectId",
+//                        Integer.class)
+//                .parameter("projectId", projectId)
+//                .one();
     }
 
 }
