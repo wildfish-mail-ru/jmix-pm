@@ -1,6 +1,26 @@
 <window xmlns="http://jmix.io/schema/ui/window"
-        caption="msg://application.caption">
+        caption="msg:///application.caption">
 
+    <data>
+        <collection id="projectsDc" class="com.company.jmixpm.entity.Project" fetchPlan="_instance_name">
+            <loader id="projectsDl">
+                <query>
+                    <![CDATA[select e from Project e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="tasksDc" class="com.company.jmixpm.entity.Task" fetchPlan="_base">
+            <loader id="tasksDl">
+                <query>
+                    <![CDATA[select e from Task_ e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <actions>
+        <action id="addTaskAction" caption="msg://addTaskAction.caption" icon="PLUS" primary="true"/>
+        <action id="refreshAction" caption="msg://refreshAction.caption" icon="REFRESH_ACTION"/>
+    </actions>
     <layout>
         <cssLayout id="horizontalWrap"
                    stylename="jmix-drawer-layout">
@@ -30,18 +50,38 @@
                     <button id="collapseDrawerButton"
                             icon="CHEVRON_LEFT"
                             stylename="jmix-drawer-collapse-button"
-                            description="msg://sideMenuCollapse"/>
+                            description="msg:///sideMenuCollapse"/>
                     <userIndicator id="userIndicator"
                                    align="MIDDLE_CENTER"/>
                     <logoutButton id="logoutButton"
                                   icon="SIGN_OUT"
-                                  description="msg://logoutBtnDescription"/>
+                                  description="msg:///logoutBtnDescription"/>
                 </cssLayout>
             </drawer>
             <workArea id="workArea"
                       stylename="jmix-workarea"
                       height="100%">
-                <initialLayout spacing="true" margin="true">
+                <initialLayout spacing="true" margin="true" expand="tasksCalendar">
+                    <hbox id="topBox" expand="welcomeBox" width="100%">
+                        <form id="form">
+                            <column width="400px">
+                                <entityComboBox id="projectSelector" caption="msg://projectSelector.caption"
+                                                optionsContainer="projectsDc"/>
+                                <textField id="nameSelector" caption="msg://nameSelector.caption" datatype="string"/>
+                                <dateField id="dateSelector" caption="msg://dateSelector.caption"
+                                           datatype="localDateTime"/>
+                                <hbox spacing="true" width="AUTO">
+                                    <button id="addTaskBtn" action="addTaskAction"/>
+                                    <button id="refreshBtn" action="refreshAction"/>
+                                </hbox>
+                            </column>
+                        </form>
+                        <vbox id="welcomeBox" height="100%">
+                            <label value="msg:///application.welcomeLabel" align="MIDDLE_CENTER"/>
+                        </vbox>
+
+                    </hbox>
+                    <calendar id="tasksCalendar" width="100%"></calendar>
                 </initialLayout>
             </workArea>
         </cssLayout>
