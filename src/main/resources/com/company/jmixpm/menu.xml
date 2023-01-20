@@ -8,8 +8,7 @@
         <item screen="themeSettingsScreen" caption="msg://io.jmix.ui.app.themesettings/themeSettings.caption"/>
         <item screen="TimeEntry.browse" caption="msg://com.company.jmixpm.screen.timeentry/timeEntryBrowse.menu"/>
         <item screen="ProjectStat.browse" caption="msg://com.company.jmixpm.screen.projectstat/projectStatBrowse.menu"/>
+        <item screen="JpqlTesterScreen" caption="msg://com.company.jmixpm.screen.jpqltester/jpqlTesterScreen.caption"/>
     </menu>
-    <item screen="JpqlTesterScreen" caption="msg://com.company.jmixpm.screen.jpqltester/jpqlTesterScreen.caption"
-          insertAfter="administration"/>
 
 </menu-config>

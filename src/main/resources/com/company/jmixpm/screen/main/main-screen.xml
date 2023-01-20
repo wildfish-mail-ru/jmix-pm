@@ -21,6 +21,9 @@
         <action id="addTaskAction" caption="msg://addTaskAction.caption" icon="PLUS" primary="true"/>
         <action id="refreshAction" caption="msg://refreshAction.caption" icon="REFRESH_ACTION"/>
     </actions>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
     <layout>
         <cssLayout id="horizontalWrap"
                    stylename="jmix-drawer-layout">
@@ -81,7 +84,10 @@
                         </vbox>
 
                     </hbox>
-                    <calendar id="tasksCalendar" width="100%"></calendar>
+                    <calendar id="tasksCalendar" width="100%" dataContainer="tasksDc" lastVisibleHourOfDay="18"
+                              firstVisibleHourOfDay="9" startDateProperty="startDate" endDateProperty="endDate"
+                              captionProperty="caption" navigationButtonsVisible="true" firstVisibleDayOfWeek="2"
+                              lastVisibleDayOfWeek="1"></calendar>
                 </initialLayout>
             </workArea>
         </cssLayout>
